@@ -20,8 +20,6 @@ package io.github.theepicblock.polymc.mixins.item;
 import io.github.theepicblock.polymc.impl.Util;
 import io.github.theepicblock.polymc.impl.mixin.ItemLocationStaticHack;
 import net.minecraft.item.ItemStack;
-import net.minecraft.network.PacketByteBuf;
-import net.minecraft.server.network.ServerPlayerEntity;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;

@@ -2,7 +2,6 @@ package io.github.theepicblock.polymc.mixins.item.component;
 
 import io.github.theepicblock.polymc.impl.Util;
 import io.github.theepicblock.polymc.impl.mixin.TransformingDataComponent;
-import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import net.minecraft.component.type.ItemEnchantmentsComponent;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.registry.entry.RegistryEntry;
@@ -19,7 +18,7 @@ public abstract class ItemEnchantmentComponentMixin implements TransformingDataC
 
     @Shadow public abstract Set<RegistryEntry<Enchantment>> getEnchantments();
 
-    @Shadow @Final private boolean showInTooltip;
+    @Shadow @Final boolean showInTooltip;
 
     @Override
     public Object polymc$getTransformed(ServerPlayerEntity player) {

@@ -76,8 +76,8 @@ public class Main implements ModInitializer {
 
         var states = block.getStateManager().getStates();
         // Write first id
-        buf.writeVarInt(Block.getRawIdFromState(states.get(0)));
-        var lastId = Block.getRawIdFromState(states.get(0))-1;
+        buf.writeVarInt(Block.getRawIdFromState(states.getFirst()));
+        var lastId = Block.getRawIdFromState(states.getFirst())-1;
 
         buf.writeVarInt(states.size());
         for (var state : states) {

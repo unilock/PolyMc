@@ -1,10 +1,8 @@
 package io.github.theepicblock.polymc.mixins.item.component;
 
-
 import io.github.theepicblock.polymc.impl.Util;
 import io.github.theepicblock.polymc.impl.mixin.TransformingDataComponent;
 import net.minecraft.component.type.AttributeModifiersComponent;
-import net.minecraft.component.type.FoodComponent;
 import net.minecraft.server.network.ServerPlayerEntity;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;

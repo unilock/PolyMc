@@ -1,5 +1,6 @@
 package io.github.theepicblock.polymc.mixins.wizards;
 
+import com.llamalad7.mixinextras.sugar.Local;
 import io.github.theepicblock.polymc.PolyMc;
 import io.github.theepicblock.polymc.api.wizard.Wizard;
 import io.github.theepicblock.polymc.api.wizard.WizardView;
@@ -23,7 +24,6 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
 @Mixin(FallingBlockEntity.class)
 public abstract class FallingBlockEntityMixin extends Entity implements WatchListener {
@@ -53,8 +53,8 @@ public abstract class FallingBlockEntityMixin extends Entity implements WatchLis
         super(type, world);
     }
 
-    @Inject(method = "spawnFromBlock", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;setBlockState(Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;I)Z"), locals = LocalCapture.CAPTURE_FAILHARD)
-    private static void onSpawnFromBlock(World world, BlockPos pos, BlockState state, CallbackInfoReturnable<FallingBlockEntity> cir, FallingBlockEntity entity) {
+    @Inject(method = "spawnFromBlock", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;setBlockState(Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;I)Z"))
+    private static void onSpawnFromBlock(World world, BlockPos pos, BlockState state, CallbackInfoReturnable<FallingBlockEntity> cir, @Local FallingBlockEntity entity) {
         //When a falling block falls. The block is actually removed by the falling block entity on the first tick.
         PolyMapMap<Wizard> previousWizards = WizardView.removeWizards(world, pos, true);
         previousWizards.forEach((polyMap, wizard) -> {

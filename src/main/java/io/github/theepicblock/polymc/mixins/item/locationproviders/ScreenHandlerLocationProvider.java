@@ -3,7 +3,6 @@ package io.github.theepicblock.polymc.mixins.item.locationproviders;
 import io.github.theepicblock.polymc.api.item.ItemLocation;
 import io.github.theepicblock.polymc.impl.mixin.ItemLocationStaticHack;
 import net.minecraft.network.RegistryByteBuf;
-import net.minecraft.network.packet.s2c.play.InventoryS2CPacket;
 import net.minecraft.network.packet.s2c.play.ScreenHandlerSlotUpdateS2CPacket;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;

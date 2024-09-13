@@ -21,7 +21,6 @@ import io.github.theepicblock.polymc.api.PolyMap;
 import io.github.theepicblock.polymc.impl.Util;
 import io.github.theepicblock.polymc.impl.mixin.ChunkPacketStaticHack;
 import me.jellysquid.mods.lithium.common.world.chunk.LithiumHashPalette;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.collection.IndexedIterable;
 import net.minecraft.world.chunk.ArrayPalette;

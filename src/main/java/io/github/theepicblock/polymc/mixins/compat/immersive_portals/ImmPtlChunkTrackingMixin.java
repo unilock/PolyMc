@@ -6,6 +6,8 @@ import it.unimi.dsi.fastutil.longs.Long2ObjectMap;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.math.ChunkPos;
+import net.minecraft.world.World;
+import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
@@ -13,7 +15,6 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import qouteall.imm_ptl.core.chunk_loading.ImmPtlChunkTracking;
 
-import java.util.ArrayList;
 import java.util.Map;
 
 @Mixin(ImmPtlChunkTracking.class)
@@ -25,7 +26,7 @@ public class ImmPtlChunkTrackingMixin {
     }
 
     @Inject(method = "lambda$forceRemovePlayer$16", at = @At(value = "INVOKE", target = "Lqouteall/imm_ptl/core/network/PacketRedirection;sendRedirectedMessage(Lnet/minecraft/server/network/ServerPlayerEntity;Lnet/minecraft/registry/RegistryKey;Lnet/minecraft/network/packet/Packet;)V"), require = 0)
-    private static void unloadChunkOnClient2(ServerPlayerEntity player, RegistryKey dim, Long2ObjectMap.Entry e, CallbackInfoReturnable<Boolean> cir, @Local ImmPtlChunkTracking.PlayerWatchRecord rec) {
+    private static void unloadChunkOnClient2(ServerPlayerEntity player, RegistryKey<World> dim, Long2ObjectMap.Entry<Object2ObjectOpenHashMap<ServerPlayerEntity, ImmPtlChunkTracking. PlayerWatchRecord>> e, CallbackInfoReturnable<Boolean> cir, @Local ImmPtlChunkTracking.PlayerWatchRecord rec) {
         removePlayer(player, rec);
     }
 

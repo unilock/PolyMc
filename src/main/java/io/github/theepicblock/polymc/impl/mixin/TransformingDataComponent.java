@@ -1,7 +1,5 @@
 package io.github.theepicblock.polymc.impl.mixin;
 
-import net.minecraft.component.type.AttributeModifiersComponent;
-import net.minecraft.component.type.ItemEnchantmentsComponent;
 import net.minecraft.server.network.ServerPlayerEntity;
 
 public interface TransformingDataComponent {

@@ -61,7 +61,7 @@ public class Config {
 
     public boolean isMixinAutoDisabled(String mixin) {
         // Automatically disable mixins related to processSyncedBlockEventServerSide if it's empty
-        if (misc.processSyncedBlockEventServerSide.size() == 0 &&
+        if (misc.processSyncedBlockEventServerSide.isEmpty() &&
                    (mixin.equals("block.ProcessSyncedBlockEventServerSideImplementation") ||
                    mixin.equals("ServerParticlePatch"))) {
             return true;

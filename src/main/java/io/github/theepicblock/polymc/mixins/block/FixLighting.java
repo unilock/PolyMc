@@ -33,7 +33,7 @@ public abstract class FixLighting extends AbstractChunkHolder {
         // Get all the watchers anyway
         List<ServerPlayerEntity> watchers = watchProvider.getPlayersWatchingChunk(this.pos, false);
 
-        if (onlyOnWatchDistanceEdge == false) {
+        if (!onlyOnWatchDistanceEdge) {
             // This will be sent to everyone regardless. Just use the normal method
             return watchers;
         }

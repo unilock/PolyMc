@@ -3,7 +3,6 @@ package io.github.theepicblock.polymc.mixins.block.implementations;
 import io.github.theepicblock.polymc.impl.Util;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityType;
-import net.minecraft.network.PacketByteBuf;
 import net.minecraft.network.RegistryByteBuf;
 import net.minecraft.network.packet.s2c.play.EntitySpawnS2CPacket;
 import org.spongepowered.asm.mixin.Final;

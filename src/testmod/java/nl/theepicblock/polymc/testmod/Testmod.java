@@ -2,15 +2,13 @@ package nl.theepicblock.polymc.testmod;
 
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
-import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.type.BlockSetTypeBuilder;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
-import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
 import net.minecraft.block.*;
 import net.minecraft.component.type.FoodComponents;
-import net.minecraft.entity.EntityDimensions;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.SpawnGroup;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.entity.effect.StatusEffectInstance;
@@ -66,23 +64,23 @@ public class Testmod implements ModInitializer {
     public static final Item TEGGINGS = new ArmorItem(TEST_MATERIAL, ArmorItem.Type.LEGGINGS, new Item.Settings());
     public static final Item TOOTS = new ArmorItem(TEST_MATERIAL, ArmorItem.Type.BOOTS, new Item.Settings());
 
-    public static final Block TEST_BLOCK = new TestBlock(FabricBlockSettings.create());
-    public static final Block TEST_STAIRS = new TestStairsBlock(TEST_BLOCK.getDefaultState(), FabricBlockSettings.create());
-    public static final Block TEST_SLAB = new TestSlabBlock(FabricBlockSettings.create());
-    public static final Block TEST_DOOR = new DoorBlock(TEST_WOOD_BLOCKSET, FabricBlockSettings.copyOf(Blocks.OAK_DOOR));
-    public static final Block TEST_IRON_DOOR = new DoorBlock(TEST_IRON_BLOCKSET, FabricBlockSettings.copyOf(Blocks.OAK_DOOR));
-    public static final Block TEST_TRAP_DOOR = new TrapdoorBlock(TEST_WOOD_BLOCKSET, FabricBlockSettings.copyOf(Blocks.OAK_TRAPDOOR));
-    public static final Block TEST_IRON_TRAP_DOOR = new TrapdoorBlock(TEST_IRON_BLOCKSET, FabricBlockSettings.copyOf(Blocks.OAK_TRAPDOOR));
-    public static final Block TEST_BLOCK_GLOWING = new Block(FabricBlockSettings.create().luminance(9));
-    public static final Block TEST_BLOCK_WIZARD = new ColoredFallingBlock(new ColorCode(0), FabricBlockSettings.create());
+    public static final Block TEST_BLOCK = new TestBlock(AbstractBlock.Settings.create());
+    public static final Block TEST_STAIRS = new TestStairsBlock(TEST_BLOCK.getDefaultState(), AbstractBlock.Settings.create());
+    public static final Block TEST_SLAB = new TestSlabBlock(AbstractBlock.Settings.create());
+    public static final Block TEST_DOOR = new DoorBlock(TEST_WOOD_BLOCKSET, AbstractBlock.Settings.copy(Blocks.OAK_DOOR));
+    public static final Block TEST_IRON_DOOR = new DoorBlock(TEST_IRON_BLOCKSET, AbstractBlock.Settings.copy(Blocks.OAK_DOOR));
+    public static final Block TEST_TRAP_DOOR = new TrapdoorBlock(TEST_WOOD_BLOCKSET, AbstractBlock.Settings.copy(Blocks.OAK_TRAPDOOR));
+    public static final Block TEST_IRON_TRAP_DOOR = new TrapdoorBlock(TEST_IRON_BLOCKSET, AbstractBlock.Settings.copy(Blocks.OAK_TRAPDOOR));
+    public static final Block TEST_BLOCK_GLOWING = new Block(AbstractBlock.Settings.create().luminance(b -> 9));
+    public static final Block TEST_BLOCK_WIZARD = new ColoredFallingBlock(new ColorCode(0), AbstractBlock.Settings.create());
 
-    public static final EntityType<? extends LivingEntity> TEST_ENTITY_DIRECT = FabricEntityTypeBuilder.create().entityFactory(CreeperEntity::new).trackRangeChunks(4).dimensions(EntityDimensions.fixed(0.5f, 0.5f)).build();
-    public static final EntityType<? extends LivingEntity> TEST_ENTITY_EXTEND_DIRECT = FabricEntityTypeBuilder.create().entityFactory(TestExtendDirectEntity::new).trackRangeChunks(4).dimensions(EntityDimensions.fixed(0.5f, 0.5f)).build();
-    public static final EntityType<? extends LivingEntity> TEST_ENTITY_EXTEND_MOB = FabricEntityTypeBuilder.create().entityFactory(TestExtendMobEntity::new).trackRangeChunks(4).dimensions(EntityDimensions.fixed(0.5f, 0.5f)).build();
-    public static final EntityType<? extends LivingEntity> TEST_ENTITY_EXTEND_GOLEM = FabricEntityTypeBuilder.create().entityFactory(TestExtendGolemEntity::new).trackRangeChunks(4).dimensions(EntityDimensions.fixed(0.5f, 0.5f)).build();
-    public static final EntityType<? extends LivingEntity> TEST_ENTITY_LIVING = FabricEntityTypeBuilder.create().entityFactory(TestLivingEntity::new).trackRangeChunks(4).dimensions(EntityDimensions.fixed(0.5f, 0.5f)).build();
-    public static final EntityType<?> TEST_ENTITY_OTHER = FabricEntityTypeBuilder.create().entityFactory(TestOtherEntity::new).trackRangeChunks(4).dimensions(EntityDimensions.fixed(0.5f, 0.5f)).build();
-    public static final EntityType<?> TEST_FLYING_WAXED_WEATHERED_CUT_COPPER_STAIRS_ENTITY = FabricEntityTypeBuilder.create().entityFactory(TestFlyingWaxedWeatheredCutCopperStairs::new).trackRangeChunks(4).dimensions(EntityDimensions.fixed(0.5f, 0.5f)).build();
+    public static final EntityType<? extends LivingEntity> TEST_ENTITY_DIRECT = EntityType.Builder.create(CreeperEntity::new, SpawnGroup.MISC).maxTrackingRange(4).dimensions(0.5f, 0.5f).build();
+    public static final EntityType<? extends LivingEntity> TEST_ENTITY_EXTEND_DIRECT = EntityType.Builder.create(TestExtendDirectEntity::new, SpawnGroup.MISC).maxTrackingRange(4).dimensions(0.5f, 0.5f).build();
+    public static final EntityType<? extends LivingEntity> TEST_ENTITY_EXTEND_MOB = EntityType.Builder.create(TestExtendMobEntity::new, SpawnGroup.MISC).maxTrackingRange(4).dimensions(0.5f, 0.5f).build();
+    public static final EntityType<? extends LivingEntity> TEST_ENTITY_EXTEND_GOLEM = EntityType.Builder.create(TestExtendGolemEntity::new, SpawnGroup.MISC).maxTrackingRange(4).dimensions(0.5f, 0.5f).build();
+    public static final EntityType<? extends LivingEntity> TEST_ENTITY_LIVING = EntityType.Builder.create(TestLivingEntity::new, SpawnGroup.MISC).maxTrackingRange(4).dimensions(0.5f, 0.5f).build();
+    public static final EntityType<?> TEST_ENTITY_OTHER = EntityType.Builder.create(TestOtherEntity::new, SpawnGroup.MISC).maxTrackingRange(4).dimensions(0.5f, 0.5f).build();
+    public static final EntityType<?> TEST_FLYING_WAXED_WEATHERED_CUT_COPPER_STAIRS_ENTITY = EntityType.Builder.create(TestFlyingWaxedWeatheredCutCopperStairs::new, SpawnGroup.MISC).maxTrackingRange(4).dimensions(0.5f, 0.5f).build();
 
     public static final RegistryEntry<StatusEffect> TEST_EFFECT = Registry.registerReference(Registries.STATUS_EFFECT, id("yellow_effect"), new YellowStatusEffect(StatusEffectCategory.HARMFUL, YELLOW));
     public static final Potion TEST_POTION_TYPE = Registry.register(Registries.POTION, id("yellow_potion"), new Potion(new StatusEffectInstance(TEST_EFFECT, 9600)));

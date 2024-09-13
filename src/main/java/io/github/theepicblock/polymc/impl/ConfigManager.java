@@ -104,7 +104,15 @@ public class ConfigManager {
         Optional<ModContainer> container = FabricLoader.getInstance().getModContainer("polymc");
         if (container.isPresent()) {
             ModContainer polymcContainer = container.get();
-            return polymcContainer.getPath(path);
+            Optional<Path> polymcPath = polymcContainer.findPath(path);
+            if (polymcPath.isPresent()) {
+                return polymcPath.get();
+            } else {
+                LOGGER.warn("The modcontainer for 'polymc' was found,");
+                LOGGER.warn("but the requested path ("+path+") was not! What the heck!?");
+                LOGGER.warn("The server will probably crash due to a NullPointer exception now");
+                return null;
+            }
         } else {
             LOGGER.warn("The modcontainer for 'polymc' couldn't be found.");
             LOGGER.warn("Did someone change the modid in the fabric.mod.json!?");
@@ -122,7 +130,7 @@ public class ConfigManager {
             for (Map.Entry<String,JsonElement> e : add.entrySet()) {
                 JsonElement element = e.getValue();
                 List<String> path = new LinkedList<>(Arrays.asList(e.getKey().split("\\.")));
-                String last = path.remove(path.size() - 1);
+                String last = path.removeLast();
 
                 if (element.isJsonObject()) {
                     JsonObject obj = element.getAsJsonObject();
@@ -146,12 +154,12 @@ public class ConfigManager {
         if (remove != null) {
             for (JsonElement e : remove) {
                 List<String> path = new LinkedList<>(Arrays.asList(e.getAsString().split("\\.")));
-                String last = path.remove(path.size() - 1);
-                if (path.size() == 0) {
+                String last = path.removeLast();
+                if (path.isEmpty()) {
                     config.remove(last);
                     continue;
                 }
-                String secondLast = path.remove(path.size() - 1);
+                String secondLast = path.removeLast();
 
                 JsonElement elementToRemoveFrom = traverse(config, path).get(secondLast);
                 if (elementToRemoveFrom.isJsonObject()) {

@@ -34,7 +34,7 @@ public abstract class PlaceAnimationAndSoundFix extends Item {
 
 
     @WrapOperation(method = "place(Lnet/minecraft/item/ItemPlacementContext;)Lnet/minecraft/util/ActionResult;", at = @At(value = "INVOKE", target = "Lnet/minecraft/util/ActionResult;success(Z)Lnet/minecraft/util/ActionResult;"))
-    private ActionResult changeResult(boolean swingHand, Operation<ActionResult> original, @Local(ordinal = 0) ItemPlacementContext context) {
+    private ActionResult changeResult(boolean swingHand, Operation<ActionResult> original, @Local(ordinal = 1) ItemPlacementContext context) {
         if (context.getPlayer() instanceof ServerPlayerEntity serverPlayerEntity
                 && Util.tryGetPolyMap(serverPlayerEntity).getItemPoly(this) instanceof PlaceableItemPoly) {
             return ActionResult.SUCCESS;

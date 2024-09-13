@@ -22,7 +22,7 @@ import java.util.TreeMap;
 @ApiStatus.Internal
 public class JSoundEventRegistryImpl implements JSoundEventRegistry {
     private static final Type TYPE = new TypeToken<Map<String,JSoundEventImpl>>() {}.getType();
-    private Map<String, JSoundEvent> jsonRepresentation;
+    private final Map<String, JSoundEvent> jsonRepresentation;
 
     public JSoundEventRegistryImpl() {
         this.jsonRepresentation = new TreeMap<>();

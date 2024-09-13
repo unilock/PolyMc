@@ -33,7 +33,7 @@ import org.spongepowered.asm.mixin.injection.At;
  * Even if the stick is supposed to represent another item. To fix this, we store the original full itemstack inside
  * the polyd itemstack and restore it when we receive the packet.
  * @see io.github.theepicblock.polymc.impl.PolyMapImpl#getClientItem(ItemStack, ServerPlayerEntity, ItemLocation)
- * @see io.github.theepicblock.polymc.api.PolyMap#reverseClientItem(ItemStack)
+ * @see io.github.theepicblock.polymc.api.PolyMap#reverseClientItem(ItemStack, ServerPlayerEntity)
  */
 @Mixin(ServerPlayNetworkHandler.class)
 public class CreativeItemStackFix {

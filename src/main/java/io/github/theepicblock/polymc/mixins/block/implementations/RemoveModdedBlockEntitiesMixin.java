@@ -5,7 +5,6 @@ import com.llamalad7.mixinextras.sugar.Local;
 import io.github.theepicblock.polymc.impl.Util;
 import io.github.theepicblock.polymc.impl.mixin.ChunkPacketStaticHack;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.network.packet.s2c.play.ChunkData;
 import net.minecraft.util.math.BlockPos;
 import org.spongepowered.asm.mixin.Mixin;

@@ -1,6 +1,5 @@
 package io.github.theepicblock.polymc.impl.mixin;
 
-import io.github.theepicblock.polymc.PolyMc;
 import io.github.theepicblock.polymc.api.misc.PolyMapProvider;
 import io.github.theepicblock.polymc.impl.Util;
 import net.fabricmc.fabric.api.entity.FakePlayer;

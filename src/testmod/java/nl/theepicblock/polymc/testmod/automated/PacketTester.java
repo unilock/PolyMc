@@ -70,7 +70,7 @@ public class PacketTester implements Closeable {
                 .map(packet -> (T)packet)
                 .toList();
         this.context.assertTrue(packets.size() == 1, String.format("Expected one packet of type %s, found %d", packetType, packets.size()));
-        return packets.get(0);
+        return packets.getFirst();
     }
 
     /**

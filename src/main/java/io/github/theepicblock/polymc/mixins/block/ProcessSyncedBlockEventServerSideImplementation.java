@@ -20,16 +20,9 @@ package io.github.theepicblock.polymc.mixins.block;
 import io.github.theepicblock.polymc.impl.ConfigManager;
 import net.minecraft.block.Block;
 import net.minecraft.registry.Registries;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.server.MinecraftServer;
-import net.minecraft.server.WorldGenerationProgressListener;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.random.RandomSequencesState;
-import net.minecraft.world.dimension.DimensionOptions;
-import net.minecraft.world.level.ServerWorldProperties;
-import net.minecraft.world.level.storage.LevelStorage;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
@@ -38,7 +31,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.Executor;
 
 /**
  * Synced block events are called on the server, but executed on the client.
@@ -52,7 +44,7 @@ public class ProcessSyncedBlockEventServerSideImplementation {
     private final List<Block> serverCalculatedBlockEvents = new ArrayList<>();
 
     @Inject(method = "<init>", at = @At("TAIL"))
-    public void initInject(MinecraftServer server, Executor workerExecutor, LevelStorage.Session session, ServerWorldProperties properties, RegistryKey worldKey, DimensionOptions dimensionOptions, WorldGenerationProgressListener worldGenerationProgressListener, boolean debugWorld, long seed, List spawners, boolean shouldTickTime, RandomSequencesState randomSequencesState, CallbackInfo ci) {
+    public void initInject(CallbackInfo ci) {
         List<String> serverCalculatedBlockEventsAsString = ConfigManager.getConfig().misc.getProcessSyncedBlockEventServerSide();
         for (String s : serverCalculatedBlockEventsAsString) {
             Block e = Registries.BLOCK.get(Identifier.of(s));

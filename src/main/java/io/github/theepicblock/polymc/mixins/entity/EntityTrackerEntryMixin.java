@@ -130,7 +130,7 @@ public class EntityTrackerEntryMixin implements EntityTrackerEntryDuck {
         if (!hasValidWizard.get()) return;
 
         if (this.entity instanceof LivingEntity livingEntity) {
-            Set<EntityAttributeInstance> set = ((LivingEntity)this.entity).getAttributes().getTracked();
+            Set<EntityAttributeInstance> set = livingEntity.getAttributes().getTracked();
             set.clear();
         }
 

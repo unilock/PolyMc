@@ -214,10 +214,10 @@ public final class FakeWorld extends World implements LightSourceView {
         try {
             worldUnsafe = (FakeWorld) UnsafeAccess.UNSAFE.allocateInstance(FakeWorld.class);
             var accessor = (WorldAccessor) worldUnsafe;
-            accessor.polymc$setBiomeAccess(new BiomeAccess(worldUnsafe, 1l));
+            accessor.polymc$setBiomeAccess(new BiomeAccess(worldUnsafe, 1L));
             accessor.polymc$setBorder(new WorldBorder());
             accessor.polymc$setDebugWorld(true);
-            accessor.polymc$setProfiler(() -> new ProfilerSystem(() -> 0l, () -> 0, false));
+            accessor.polymc$setProfiler(() -> new ProfilerSystem(() -> 0L, () -> 0, false));
             accessor.polymc$setProperties(new FakeWorldProperties());
             accessor.polymc$setRegistryKey(RegistryKey.of(RegistryKeys.WORLD, Identifier.of("polymer","fake_world")));
             accessor.polymc$setDimensionEntry(dimType);
@@ -228,7 +228,7 @@ public final class FakeWorld extends World implements LightSourceView {
             accessor.polymc$setPendingBlockEntityTickers(new ArrayList<>());
             try {
                 accessor.polymc$setDamageSources(new DamageSources(REGISTRY_MANAGER));
-            } catch (Throwable e) {
+            } catch (Throwable ignored) {
 
             }
 

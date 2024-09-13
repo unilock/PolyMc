@@ -21,7 +21,6 @@ import com.llamalad7.mixinextras.sugar.Local;
 import io.github.theepicblock.polymc.impl.mixin.PacketReplacementUtil;
 import net.minecraft.block.BedBlock;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.enums.BedPart;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -29,9 +28,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
 /**
  * In the {@link BedBlock#onBreak(World, BlockPos, BlockState, PlayerEntity)} method, there is a call to create a WorldEvent for the breakage.
@@ -40,7 +37,7 @@ import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 public class BedBlockImplementation {
     /**
      * Removes the call to {@link World#syncWorldEvent(PlayerEntity, int, BlockPos, int)} so it can be replaced
-     * @see #worldEventReplacement(World, BlockPos, BlockState, PlayerEntity, CallbackInfo, BedPart, BlockPos, BlockState)
+     * @see #worldEventReplacement(World, BlockPos, BlockState, PlayerEntity, CallbackInfoReturnable, BlockPos, BlockState)
      */
     @Redirect(method = "onBreak", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;syncWorldEvent(Lnet/minecraft/entity/player/PlayerEntity;ILnet/minecraft/util/math/BlockPos;I)V"))
     public void worldEventDisabler(World world, PlayerEntity player, int eventId, BlockPos pos, int data) {

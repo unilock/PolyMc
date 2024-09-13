@@ -46,7 +46,7 @@ public final class JElementFace {
         if (o == null || getClass() != o.getClass()) return false;
         JElementFace that = (JElementFace)o;
         return (rotation == null || that.rotation == null) ? rotation == that.rotation : rotation.intValue() == that.rotation.intValue() &&
-                (tintindex == null || that.tintindex == null) ? tintindex == that.tintindex : tintindex.intValue() == that.tintindex.intValue() &&
+                (tintindex == null || that.tintindex == null) ? Objects.equals(tintindex, that.tintindex) : tintindex.intValue() == that.tintindex.intValue() &&
                 Arrays.equals(uv, that.uv) && Objects.equals(texture, that.texture) && cullface == that.cullface;
     }
 

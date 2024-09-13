@@ -1,6 +1,5 @@
 package io.github.theepicblock.polymc.mixins.block;
 
-import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import it.unimi.dsi.fastutil.objects.Reference2IntMap;
 import net.minecraft.util.collection.IdList;
 import org.spongepowered.asm.mixin.Mixin;

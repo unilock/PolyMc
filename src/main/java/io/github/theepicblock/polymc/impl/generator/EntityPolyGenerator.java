@@ -71,8 +71,8 @@ public class EntityPolyGenerator {
             }
         });
 
-        if (possible.size() > 0) {
-            return new DefaultedEntityPoly<>(possible.get(0));
+        if (!possible.isEmpty()) {
+            return new DefaultedEntityPoly<>(possible.getFirst());
         }
 
         if (FlyingItemEntity.class.isAssignableFrom(baseClass)) {

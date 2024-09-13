@@ -1,11 +1,11 @@
 package io.github.theepicblock.polymc.impl.misc;
 
-import io.github.theepicblock.polymc.PolyMc;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.SimpleRegistry;
+//import io.github.theepicblock.polymc.PolyMc;
+//import net.minecraft.registry.Registries;
+//import net.minecraft.registry.SimpleRegistry;
 //import org.quiltmc.qsl.registry.api.sync.RegistrySynchronization;
 
-import java.lang.reflect.InvocationTargetException;
+//import java.lang.reflect.InvocationTargetException;
 
 public class QslRegistryCompat {
     public static void init() {
